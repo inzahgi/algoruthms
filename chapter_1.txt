@@ -1,0 +1,180 @@
+1.1.1 给出以下表达式的值：
+    a. (0 + 15)/2
+    b. 2.0e-6 * 100000000.1
+    c. true && false || true && true
+
+答案： a. 7, b. 200.0000002, c. true
+
+1.1.2 给出以下表达式的类型和值：
+    a. (1+2.236)/2
+    b. 1+2+3+4.0
+    c. 4.1 >= 4
+    d. 1+2+"3"
+
+1.618
+10.0
+true
+33
+
+1.1.3
+
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        if(args.length != 3){
+            throw new IllegalArgumentException("Invalid number of arguments");
+        }
+        int num1 = Integer.parseInt(args[0]);
+        int num2 = Integer.parseInt(args[1]);
+        int num3 = Integer.parseInt(args[2]);
+
+        if(num1 == num2 || num1 == num3){
+            System.out.println("equal");
+        }else {
+            System.out.println("not equal");
+        }
+        
+    }
+}
+
+
+1.1.4
+1.'then' is not key word of java 2.(a>b) 4.before 'else' should have ';'
+
+1.1.5
+public class chapter1 {
+
+    public static void main(String[] args) {
+        double num1 = Math.random()*2;
+        double num2 = Math.random()*2;
+        System.out.println("num1 = " + num1 + "\tnum2 = " + num2);
+        System.out.println("both in (0, 1) ? " + (num1>0 && num1 < 1 && num2 >0 && num2 <1));
+    }
+}
+
+1.1.6
+
+
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+
+1.1.7
+
+3.00009
+499500
+509500
+
+1.1.8
+
+b
+197
+f
+
+1.1.9
+public class chapter1 {
+
+    public static void main(String[] args) {
+        int n = 14;
+        StringBuilder sb = new StringBuilder();
+        for(int i = n; i > 0; i /=2){
+            sb.append(i % 2);
+        }
+
+        System.out.println(sb.reverse().toString());
+
+        sb.delete(0, sb.length());
+        for(int i = n; i > 0; i=i>>>1){
+            sb.append(i&1);
+        }
+        System.out.println(sb.reverse().toString());
+
+    }
+}
+
+1.1.11
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        boolean [][] a= new boolean[5][5];
+        for(int i = 0; i<5; i++){
+            for(int j = 0; j<5; j++){
+                a[i][j] = Math.random() > 0.5;
+            }
+        }
+
+        for(int i=0; i<5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print("a[" + i + "][" + j + "]=" + a[i][j] + "  "+ (a[i][j]==true?"*":" ") +"\t");
+            }
+            System.out.println();
+        }
+    }
+}
+
+1.1.12
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+1.1.13
+
+public class chapter1 {
+
+    public static void print(int[][] a){
+        for(int i=0; i<5; i++) {
+            for (int j = 0; j < 5; j++)
+                System.out.printf("[%d][%d]=%d\t", i, j, a[i][j]);
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] a = new int[5][5];
+        for(int i=0; i<5; i++)
+            for(int j=0; j<5; j++)
+                a[i][j] = Math.round((float)Math.random()*10);
+
+        chapter1.print(a);
+
+        int[][] b = new int[5][5];
+
+        System.out.println("\n\n");
+        for(int i = 0; i<a.length; i++)
+            for (int j=0; j<a[i].length; j++) {
+                b[j][i]=a[i][j];
+            }
+
+        chapter1.print(b);
+
+
+    }
+}
+
+
+
+
+
