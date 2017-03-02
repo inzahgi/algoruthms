@@ -175,6 +175,105 @@ public class chapter1 {
 }
 
 
+1.1.14
+public class chapter1 {
 
+    public static int lg(int N){
+        int res = 0;
+        int remainder = 0;
+        while(N >2 || (N==2 && remainder != 0 )){
+            res +=1;
+           if(remainder == 0 && N%2 != 0)
+                remainder =1;
+            N /= 2;
+        }
+        return res;
+    }
+
+    public static int lg_1(int N){
+        int res = 0;
+        int likeN = 2;
+        while(N>2 && likeN < N){
+            res += 1;
+            likeN *= 2;
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+
+        int N = 1000;
+        for (int i = 0; i < N; i++) {
+            //System.out.printf("%d ----- %d ---------%d\n\n", i, chapter1.lg(i), chapter1.lg_1(i));
+            if(chapter1.lg(i) != chapter1.lg_1(i)) {
+                System.out.printf("%d ----- %d ---------%d\n\n", i, chapter1.lg(i), chapter1.lg_1(i));
+            }
+
+        }
+
+    }
+}
+
+
+1.1.15
+
+public class chapter1 {
+
+    public static int[] histogram(int[] a, int M) {
+        int[] res = new int[M];
+        for(int i=0; i<M; i++){
+            int cnt = 0;
+            for(int j: a) {
+                if(j==i)
+                    cnt++;
+            }
+            res[i] = cnt;
+        }
+        return res;
+    }
+
+    public static int[] histogram_1(int[] a, int M) {
+        int[] res = new int[M];
+        for(int i: a){
+            if(i<M) {
+                res[i] = res[i] + 1;
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int a[] ={1,2,3,4,5,6,7,8,9,1};
+        int M = 10;
+        int[] res = chapter1.histogram_1(a, M);
+        for (int i = 0; i < M; i++) {
+            System.out.printf("%d----%d\n",i, res[i]);
+        }
+
+
+    }
+}
+
+
+1.1.16
+
+11422472253113571022531135831136114224681013225311358311361142246811311361142246911422472253113579111316225311358311361142246811311361142246911422472253113579111431136114224691142247225311357912114224722531135710225311358311361142246810121416
+
+public class chapter1 {
+
+    public static String exR1(int n) {
+        if(n <= 0) return "";
+        return exR1(n-3) + n + exR1(n-2) + n;
+    }
+
+
+    public static void main(String[] args) {
+
+            System.out.printf("%s\n",exR1(16));
+    }
+}
+
+
+1.1.17
 
 
