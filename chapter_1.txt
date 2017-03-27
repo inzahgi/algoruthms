@@ -276,4 +276,157 @@ public class chapter1 {
 
 1.1.17
 
+1.1.18
+
+mystery_1(4, 12) + 2
+mystery_1(32, 1) + 16
+mystery_1(64, 0) + 32
+50
+mystery_1(6, 5) + 3
+mystery_1(12, 2) + 6
+mystery_1(48, 0) + 24
+33
+mystery_2(4, 12) * 2
+mystery_2(256, 1) * 16
+mystery_2(65536, 0) * 256
+8192
+mystery_2(9, 5) * 3
+mystery_2(81, 2) * 9
+mystery_2(26244, 0) * 162
+4374
+
+public class chapter1 {
+
+    public static int mystery_1(int a, int b){
+        if(b == 0)
+            return 0;
+        if(b % 2 == 0)
+            return mystery_1(a + a, b / 2);
+        System.out.printf("mystery_1(%d, %d) + %d\n", a+a, b/2, a);
+        return mystery_1(a + a, b/2) + a;
+
+    }
+
+    public static int mystery_2(int a, int b){
+        if(b == 0)
+            return 1;
+        if(b % 2 == 0)
+            return mystery_2(a + a, b / 2);
+        System.out.printf("mystery_2(%d, %d) * %d\n", a*a, b/2, a);
+        return mystery_2(a * a, b / 2) * a;
+
+    }
+
+
+    public static void main(String[] args) {
+
+        System.out.printf("%s\n",mystery_1(2, 25));
+        System.out.printf("%s\n",mystery_1(3, 11));
+
+        System.out.printf("%s\n",mystery_2(2, 25));
+        System.out.printf("%s\n",mystery_2(3, 11));
+
+    }
+}
+
+1.19
+结果long 溢出
+
+public class chapter1 {
+
+    public static long[] ar = null;
+    public static long F(int N){
+        if(N == 0) return 0;
+        else if(N == 1) return 1;
+        else {
+            if(ar[N] != 0)
+                return ar[N];
+        }
+        return F(N-1) + F(N-2);
+    }
+
+
+    public static void main(String[] args) {
+        ar = new long[100];
+        for(int N = 0; N < 100; N++) {
+            long res = F(N);
+            ar[N] = res;
+            StdOut.println(N + " " + res);
+        }
+
+    }
+}
+
+
+1.20
+
+public class chapter1 {
+
+    public static double F(int x){
+        if(x <= 1)
+            return 0;
+        else
+            return F(x-1) + Math.log(x);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(F(10));
+    }
+}
+
+
+1.21
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        List<Record> list = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
+        while(scanner.hasNext() && (input =scanner.nextLine()) != null){
+            System.out.println(input);
+            String[] line = input.split(" ");
+            if(line.length != 3 ){
+                System.out.println("input wrong!!");
+                return;
+            }
+            list.add(new Record(input));
+
+        }
+        scanner.close();
+
+        for(Record r : list){
+            System.out.println(r);
+        }
+
+    }
+
+
+}
+
+class Record {
+    private String name;
+    private int numOne;
+    private int numTwo;
+    private float res;
+    
+    public Record(String line) {
+        String[] col = line.split(" ");
+        name = col[0];
+        numOne = Integer.valueOf(col[1]);
+        numTwo = Integer.valueOf(col[2]);
+        res = (float)numOne/numTwo;
+    }
+
+    @Override
+    public String toString() {
+        return "name = " + name +
+                "\tnumOne = " + numOne +
+                "\tnumTwo = " + numTwo +
+                "\tres = " + res;
+    }
+}
+
+
+1.22
 
