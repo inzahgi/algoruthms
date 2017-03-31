@@ -535,3 +535,152 @@ public class chapter1 {
 
 
 1.24
+
+3
+3
+
+
+public class chapter1 {
+
+    public static int maxComDivisor(int m, int n){
+
+        int temp;
+        while(n != 0){
+            temp = n;
+            n = m %n;
+            m = temp;
+        }
+        return m;
+
+    }
+
+
+    public static void main(String[] args) {
+
+
+        System.out.println(maxComDivisor(105, 24));
+        System.out.println(maxComDivisor(24, 105));
+
+
+    }
+
+}
+
+1.25
+
+令c=gcd(a,b），则设a=mc，b=nc
+可知r =a-kb=mc-knc=(m-kn)c
+根据第二步结果可知c也是r的因数
+可以断定m-kn与n互素[否则，可设m-kn=xd，n=yd，（d>1），则m=kn+xd=kyd+xd=(ky+x)d，则a=mc=(ky+x)dc，b=nc=ycd，故a与b最大公约数≥cd，而非c，与前面结论矛盾]
+从而可知gcd(b,r)=c，继而gcd(a,b)=gcd(b,r），得证
+
+
+1.1.26
+
+public class chapter1 {
+    private static int cnt = 0;
+
+    public static double binomial(int N, int k, double p){
+        cnt++;
+        System.out.printf("---- cnt = %d\n", cnt);
+        if(N ==0 && k == 0)
+            return 1.0;
+        if (N < 0 || k < 0)
+            return 0.0;
+        return (1.0 - p) * binomial(N-1, k, p) + p * binomial(N-1, k-1, p);
+    }
+
+
+    public static void main(String[] args) {
+        
+        System.out.printf("res = %f, cnt = %d\n",binomial(100, 50, 0.25), cnt);
+
+    }
+
+}
+
+
+ps.优化版待写
+
+1.1.27
+
+优化版待写
+
+
+1.1.28
+
+all num :
+a[0]=1	a[1]=2	a[2]=2	a[3]=2	a[4]=2	a[5]=2	a[6]=2	a[7]=2	a[8]=2	a[9]=2	a[10]=2	a[11]=2	a[12]=3	a[13]=3	a[14]=5	a[15]=8	
+same num :
+a[8]=1	a[9]=2	a[10]=2	a[11]=2	a[7]=2	a[6]=2	a[5]=2	a[4]=2	a[3]=2	a[2]=2	a[1]=2	
+
+public class chapter1 {
+
+    public static void binarySearch(int[] a, int x){
+        int[] sameIndexArr = new int[a.length];
+        int arrLen = 0;
+        if(a.length <= 0) {
+            System.out.println("input array len is 0");
+            return;
+        }
+        int low = 0;
+        int high = a.length;
+        int mid = (low + high)/2;
+        while(mid > 0){
+            if(x != a[mid]) {
+                if (x < a[mid]) {
+                    high = mid / 2 + 1;
+                } else {
+                    low = mid / 2 - 1;
+                }
+                mid = (low + high) / 2;
+            }else {
+                sameIndexArr[arrLen++] = mid;
+                for(int i = 1; i+mid < a.length-1; i++){
+                    if(a[mid + i] == x){
+                        sameIndexArr[arrLen++] = mid + i;
+                        continue;
+                    }
+                    break;
+                }
+
+                for(int i = 1; mid - i > 0; i++){
+                    if(a[mid -i] == x){
+                        sameIndexArr[arrLen++] = mid - i;
+                        continue;
+                    }
+                    break;
+                }
+                break;
+            }
+        }
+
+        System.out.println("same num :");
+        for(int i = 0; i< arrLen; i++){
+            System.out.printf("a[%d]=%d\t", sameIndexArr[i], a[i]);
+        }
+        System.out.println();
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        int[] a = {1, 2,2,2,2,2,2,2,2,2,2,2,3,3,5,8,9};
+        System.out.println("all num :");
+        for(int i = 0 ; i < a.length-1; i++){
+            System.out.printf("a[%d]=%d\t", i, a[i]);
+        }
+        System.out.println();
+        binarySearch(a, 2);
+
+    }
+
+}
+
+
+1.1.29
+
+
+
