@@ -940,3 +940,203 @@ public class chapter1 {
 }
 
 
+1.1.36
+public class chapter1 {
+
+
+    public static void shuffle(int[] a){
+        int temp;
+        for (int i = 0; i < a.length; i++) {
+            int r = (int)(Math.random()*(a.length - i)) + i;
+            temp = a[i];
+            a[i] = a[r];
+            a[r] = temp;
+        }
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.printf("a[%d]=%d\t", i, a[i]);
+//        }
+//        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int N = 1000, M = 5;
+        int[] a = new int[M];
+        int[][] cntArr = new int[M][M];
+        for(int i = 0; i < N; i++){
+            for (int j = 0; j < M; j++) {
+                a[j] = j;
+            }
+            shuffle(a);
+            for (int j = 0; j < M; j++) {
+                int newIndex = a[j];
+                cntArr[j][newIndex] += 1;
+            }
+        }
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.printf("cnt[%d][%d]=%d\n", i, j, cntArr[i][j]);
+            }
+        }
+
+    }
+}
+
+1.1.37
+
+
+public class chapter1 {
+
+    public static void shuffle(int[] a){
+        int temp;
+        for (int i = 0; i < a.length; i++) {
+            int r = (int)(Math.random()*a.length);
+            temp = a[i];
+            a[i] = a[r];
+            a[r] = temp;
+        }
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.printf("a[%d]=%d\t", i, a[i]);
+//        }
+//        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int N = 100, M = 5;
+        int[] a = new int[M];
+        int[][] cntArr = new int[M][M];
+        for(int i = 0; i < N; i++){
+            for (int j = 0; j < M; j++) {
+                a[j] = j;
+            }
+            shuffle(a);
+            for (int j = 0; j < M; j++) {
+                int newIndex = a[j];
+                cntArr[j][newIndex] += 1;
+            }
+        }
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.printf("cnt[%d][%d]=%d\n", i, j, cntArr[i][j]);
+            }
+        }
+
+    }
+}
+
+
+1.1.38
+
+binarySearchTime 139, bruteForceSearchTime 143014
+
+public class chapter1 {
+
+    public static int bruteForceSearch(int key, int[] a){
+        for (int i = 0; i < a.length; i++){
+            if(a[i] == key)
+                return i;
+        }
+        return -1;
+    }
+
+    public static int binarySearch(int key, int[] a){
+        if(a.length <1)
+            return -1;
+        int low = 0;
+        int high = a.length -1;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(a[mid] == key)
+                return mid;
+            else if(a[mid] > key)
+                high = mid -1;
+            else
+                low = mid + 1;
+        }
+        return -1;
+
+    }
+
+    public static void main(String[] args) {
+
+        In in1 = new In("F:\\1\\algs4-data\\algs4-data\\largeT.txt");
+        int[] allList = in1.readAllInts();
+
+        // sort the array
+        Arrays.sort(allList);
+
+        In in2 = new In("F:\\1\\algs4-data\\algs4-data\\largeW.txt");
+        int[] whileList = in2.readAllInts();
+
+        //Arrays.sort(whileList);
+
+        System.out.println("start binarySrarch");
+        long startBinarySearchTime = System.currentTimeMillis();
+        for(int a: whileList){
+            binarySearch(a, allList);
+        }
+        long endBinarySearchTime = System.currentTimeMillis();
+        System.out.println("start bruteForceSearch");
+        long startBruteForceSearchTime = System.currentTimeMillis();
+        for(int a: whileList){
+            bruteForceSearch(a, allList);
+        }
+        long endBruteForceSearchTime = System.currentTimeMillis();
+
+        System.out.printf("binarySearchTime %d, bruteForceSearchTime %d\n", endBinarySearchTime - startBinarySearchTime,
+                endBruteForceSearchTime - startBruteForceSearchTime);
+
+
+    }
+}
+
+
+
+1.1.39
+
+public class chapter1 {
+
+    public static int binarySearch(int key, int[] a){
+        if(a.length <1)
+            return -1;
+        int low = 0;
+        int high = a.length -1;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(a[mid] == key)
+                return mid;
+            else if(a[mid] > key)
+                high = mid -1;
+            else
+                low = mid + 1;
+        }
+        return -1;
+
+    }
+
+    public static void main(String[] args) {
+
+        int MAX_NUM = 1000*1000;
+        int T = 100;
+        int[] nArr = {1000, 1000*10, 1000*100, 1000*1000};
+
+        for(int N :nArr){
+            int[] aArr = new int[N];
+            int[] bArr = new int[N];
+            for(int i = 0; i < N; i++){
+                aArr[i] = (int)(Math.random()*MAX_NUM)+1;
+                bArr[i] = (int)(Math.random()*MAX_NUM)+1;
+            }
+            int cnt = 0;
+            for (int i = 0; i < T; i++) {
+                for (int n : aArr){
+                    if(binarySearch(n, bArr) > 0)
+                        cnt++;
+                }
+            }
+            System.out.printf("input N=%d T=%d averge cnt = %d\n",N, T, cnt);
+        }
+
+    }
+}
